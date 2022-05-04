@@ -275,7 +275,7 @@ for kk=height(bal_table):-1:1
             tempS(ll,ispec(ll,:)) = dwgt * ones(1,sum(ispec(ll,:)));
         else
             tempS(ll,ispec(ll,:)) = cellfun(@(y) ~isempty([y{:}]), ...
-                cellfun(@(x) regexp(x,bal_table{kk,spec{ll}}), allterms(ispec(ll,:)), 'uni', 0));
+                cellfun(@(x) regexp(x,cellstr(bal_table{kk,spec{ll}})), allterms(ispec(ll,:)), 'uni', 0));
         end
     end
     DM(kk,:) = double(sum(abs(tempS),1)==sum(ispec,1)) - 2.*double(any(tempS==-1,1));
